@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+.container {
+  width: 500px;
+	clear: both;
+}
+.container input {
+  width: 100%;
+  clear: both;
+}
+</style>
+
+<script type="text/javascript">
+function validate()
+{
+	var text=document.getElementById("email").value;
+	var abc=/^([a-z 0-9 \. -]+)@([a-z 0-9 -]+).(com)$/;
+	var def=/^([a-z 0-9 \. -]+)@([a-z 0-9 -]+).(in)$/;
+	
+	if(document.form.age.value<18 || document.form.age.value>100)
+	{
+	alert("please enter the age between 18 and 100");
+	document.form.age.focus();
+	return false;
+	}
+	if(document.form.pincode.value.length !=6 || isNaN(document.form.pincode.value))
+	{
+	alert("pincode length should be exactly 6!");
+	document.form.pincode.focus();
+	return false;
+	}
+	if(document.form.mobile.value.length !=10 || isNaN(document.form.mobile.value))
+	{
+	alert("mobile length should be exactly 10!");
+	document.form.mobile.focus();
+	return false;
+	}
+	if( (abc.test(text)) || (def.test(text)) )
+	{
+	
+	}
+	else
+	{
+	alert("check there is no caps and use .com or .in");
+	document.form.email.focus();
+	return false;
+	}
+	
+return true;
+}
+
+function isInputAlphabet(evt)
+	{
+                
+                var ch = String.fromCharCode(evt.which);
+                
+                if((/[0-9]/.test(ch)))
+		{
+                    evt.preventDefault();
+                }
+                
+        }
+
+ function isInputNumber(evt)
+	{
+                
+                var ch = String.fromCharCode(evt.which);
+                
+                if((!/[0-9]/.test(ch)))
+		{
+                    evt.preventDefault();
+                }
+                
+        }
+
+function passvalues()
+	{
+	var namev=document.getElementById("name").value;
+	var agev=document.getElementById("age").value;
+	var mobilev=document.getElementById("mobile").value;
+	var emailv=document.getElementById("email").value;
+	var addressv=document.getElementById("address").value;
+	var pinv=document.getElementById("pincode").value;
+	localStorage.setItem("name",namev);
+	localStorage.setItem("age",agev);
+	localStorage.setItem("mobileno",mobilev);
+	localStorage.setItem("emailid",emailv);
+	localStorage.setItem("address",addressv);
+	localStorage.setItem("pincode",pinv);
+	}
+</script>
+</head>
+<body>
+<br><br>
+<div class = "container">
+<fieldset>
+<legend><strong>form validation</strong></legend>
+ <form name="form" action="output.html" onsubmit="return validate()" >
+   <label for="name">name:</label>
+    <input style="text-transform:capitalize;" type="text"  onkeypress="isInputAlphabet(event)" id="name" name="name" placeholder="enter name.." required autofocus><br>
+   <label for="age">age:</label>
+    <input type="text" onkeypress="isInputNumber(event)" id="age" placeholder="enter age.." name="age" maxlength="3" required><br>
+   <label for="mobile">mobile:</label>
+    <input type="text" onkeypress="isInputNumber(event)" name="mobile" placeholder="enter mobile no.." id="mobile" maxlength="10" required><br>
+   <label for="email">email:</label>
+    <input type="email" name="email" placeholder="enter email.." id="email" required><br>
+   <label for="address">address:</label><br>
+    <textarea rows="5" name="address" placeholder="enter address.." columns="25" id="address" maxlength="250" required></textarea><br>
+   <label for="pincode">pincode:</label>
+    <input type="text" onkeypress="isInputNumber(event)" name="pincode" placeholder="enter pincode.." id="pincode" maxlength="6" required><br><br>
+<button type="submit" onclick="passvalues()";  name="submit" value="submit">submit</button><br>
+ </form>
+</fieldset>
+</div>
+<!--<p id="demo">manchikanti</p>
+<button type="button" onclick="passvalues()";>set item</button>
+<button type="button" onclick="getvalues()";>get item</button>-->
+</body>
+</html>
